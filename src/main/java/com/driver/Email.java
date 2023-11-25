@@ -1,5 +1,7 @@
 package com.driver;
 
+import static java.lang.Character.isUpperCase;
+
 public class Email {
 
     private String emailId;
@@ -25,5 +27,31 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+        if(this.password==oldPassword){
+            if(newPassword.length()>=8){
+                boolean isUpperCase = false;
+                boolean isLowerCase = false;
+                boolean isDigit = false;
+                boolean isSpecial = false;
+                for(int i=0; i<newPassword.length(); i++){
+                    char ch = newPassword.charAt(i);
+                    if(Character.isUpperCase(ch)){
+                        isUpperCase = true;
+                    }
+                    if(Character.isLowerCase(ch)){
+                        isLowerCase = true;
+                    }
+                    if(Character.isDigit(ch)){
+                        isDigit = true;
+                    }
+                    if(ch=='!' || ch=='@' || ch=='#' || ch=='$' || ch=='%' || ch=='^' || ch=='&' || ch=='*'){
+                        isSpecial = true;
+                    }
+                }
+                if(isUpperCase && isLowerCase && isDigit && isSpecial){
+                    this.password = newPassword;
+                }
+            }
+        }
     }
 }
